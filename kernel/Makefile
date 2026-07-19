@@ -11,8 +11,11 @@ MDIR := $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 $(info -- KDIR: $(KDIR))
 $(info -- MDIR: $(MDIR))
 
+KSU_EXPECTED_VERSION := 32558
+$(info -- KernelSU Version: $(KSU_EXPECTED_VERSION))
+
 # compliant to last upstream kernel change as of e9e5b61
-CFLAGS_ksu.o += -DKSU_VERSION=32558
+CFLAGS_ksu.o += -DKSU_VERSION=$(KSU_EXPECTED_VERSION)
 
 ifndef KSU_EXPECTED_SIZE
 KSU_EXPECTED_SIZE := 0x033b
