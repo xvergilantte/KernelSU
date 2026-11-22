@@ -142,7 +142,6 @@ uid_check:
 		return false;
 #endif /* default behavior */
 check_ptr:
-	assume(!!ptr_to_check);
 	if (unlikely(!ptr_to_check))
 		return false;
 
