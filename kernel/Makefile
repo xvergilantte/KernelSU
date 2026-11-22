@@ -93,10 +93,19 @@ CFLAGS_ksu.o += $(call cc-option, -Wno-unused-variable)
 CFLAGS_ksu.o += $(call cc-option, -Wno-unused-function)
 CFLAGS_ksu.o += $(call cc-option, -Wno-unused-label)
 CFLAGS_ksu.o += $(call cc-option, -Wno-format)
+# Clang-only option; GCC may accept unknown -Wno-* flags silently.
+ifeq ($(shell $(CC) --version 2>/dev/null | grep -qi clang && echo y),y)
 CFLAGS_ksu.o += $(call cc-option, -Wno-macro-redefined)
+endif
+# Clang-only option; GCC may accept unknown -Wno-* flags silently.
+ifeq ($(shell $(CC) --version 2>/dev/null | grep -qi clang && echo y),y)
 CFLAGS_ksu.o += $(call cc-option, -Wno-incompatible-pointer-types-discards-qualifiers)
+endif
 CFLAGS_ksu.o += $(call cc-option, -Wno-discarded-qualifiers)
+# Clang-only option; GCC may accept unknown -Wno-* flags silently.
+ifeq ($(shell $(CC) --version 2>/dev/null | grep -qi clang && echo y),y)
 CFLAGS_ksu.o += $(call cc-option, -Wno-deprecated-octal-literals)
+endif
 
 # dont be too strict
 CFLAGS_REMOVE_ksu.o += -Werror
